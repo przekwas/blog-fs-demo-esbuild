@@ -5,8 +5,7 @@ const pool = mysql.createPool({
 	...config.mysql,
 	dateStrings: true,
 	connectionLimit: 10,
-	timezone: 'Z',
-	debug: true,
+	timezone: 'Z'
 });
 
 export default pool;
