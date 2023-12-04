@@ -1,31 +1,45 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Root from './views/Root';
 import Home, { homeLoader } from './views/Home';
-import Details from './views/Details';
+import Details, { detailsLoader } from './views/Details';
+import Admin, { adminLoader } from './views/Admin';
+import Edit, { editLoader } from './views/Edit';
 import Compose from './views/Compose';
-import Admin from './views/Admin';
 import ErrorBoundary from './views/ErrorBoundary';
 
 interface AppProps {}
 
 const router = createBrowserRouter([
 	{
-		path: '/',
-		element: <Home />,
-		loader: homeLoader,
-		errorElement: <ErrorBoundary />
-	},
-	{
-		path: '/compose',
-		element: <Compose />
-	},
-	{
-		path: '/admin/:blogid',
-		element: <Admin />
-	},
-	{
-		path: '/blog/:blogid',
-		element: <Details />
+		element: <Root />,
+		errorElement: <ErrorBoundary />,
+		children: [
+			{
+				path: '/',
+				element: <Home />,
+				loader: homeLoader
+			},
+			{
+				path: '/blog/:blogid',
+				loader: detailsLoader,
+				element: <Details />
+			},
+			{
+				path: '/admin',
+				loader: adminLoader,
+				element: <Admin />
+			},
+			{
+				path: '/admin/:blogid/edit',
+				loader: editLoader,
+				element: <Edit />
+			},
+			{
+				path: '/compose',
+				element: <Compose />
+			}
+		]
 	}
 ]);
 

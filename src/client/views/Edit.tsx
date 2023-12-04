@@ -1,24 +1,51 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import {
+	ActionFunctionArgs,
+	ParamParseKey,
+	Params,
+	useLoaderData,
+	useNavigate,
+	useParams
+} from 'react-router-dom';
 import { useForm } from '../hooks/useForm';
 import { fetchData } from '../services/fetchData';
+import type { IBlog } from '../types';
 
-interface ComposeProps {}
+const PathNames = {
+	edit: '/admin/:blogid/edit'
+} as const;
 
-const Compose = (props: ComposeProps) => {
+interface Args extends ActionFunctionArgs {
+	params: Params<ParamParseKey<typeof PathNames.edit>>;
+}
+
+export const editLoader = async ({ params }: Args) => {
+	try {
+		const blog = await fetchData(`/api/blogs/${params.blogid}`);
+		return blog;
+	} catch (error) {
+		throw error;
+	}
+};
+
+interface EditProps {}
+
+const Edit = (props: EditProps) => {
 	const navigate = useNavigate();
-	const { values, handleChanges } = useForm();
+	const { blogid } = useParams();
+	const blog = useLoaderData() as IBlog;
+	const { values, handleChanges } = useForm({ title: blog.title, content: blog.content });
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
-		fetchData('/api/blogs', 'POST', values).then(result => navigate(`/blog/${result.id}`));
+		fetchData(`/api/blogs/${blogid}`, 'PUT', values).then(() => navigate(`/blog/${blogid}`));
 	};
 
 	return (
 		<div className="container mt-5">
 			<div className="row justify-content-center">
 				<div className="col-md-8">
-					<h1 className="text-center mb-4">Compose a Blog</h1>
+                    <h1 className="text-center mb-4">Editing Blog</h1>
 					<form onSubmit={handleSubmit}>
 						<div className="mb-3">
 							<label htmlFor="titleInput" className="form-label">
@@ -58,4 +85,4 @@ const Compose = (props: ComposeProps) => {
 	);
 };
 
-export default Compose;
+export default Edit;

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 
 import './styles/app.scss';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 
 // ESBuild Hot Reload for dev environment only
 if (process.env.NODE_ENV === 'development') {

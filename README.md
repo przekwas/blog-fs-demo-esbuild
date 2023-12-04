@@ -1,3 +1,20 @@
+# Component Template
+```typescript
+import React from 'react';
+
+interface TemplateProps {}
+
+const Template = (props: TemplateProps) => {
+	return (
+		<div>
+			<h1>Template Component</h1>
+		</div>
+	);
+};
+
+export default Template;
+```
+
 # TypeScript React Express ESBuild Boilerplate
 
 Welcome to the TypeScript React Express ESBuild boilerplate, tailored for budding developers learning to craft MERN CRUD applications. However, this boilerplate is also ideal for anyone aiming to switch gears and utilize ESBuild over the conventional webpack.
