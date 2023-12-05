@@ -30,7 +30,7 @@ const Navbar = (props: NavbarProps) => {
 						<div className="container-fluid ">
 							<div className="row">
 								<div className="col">
-									<ul className="navbar-nav mb-2 mb-lg-0">
+									<ul className="mb-2 navbar-nav mb-lg-0">
 										<li className="nav-item">
 											<NavLink
 												className={({ isActive }) =>
@@ -61,7 +61,7 @@ const Navbar = (props: NavbarProps) => {
 									</ul>
 								</div>
 								<div className="col-12 col-md-4">
-									<div className="d-flex justify-content-between align-items-center fs-3 w-md-25 px-md-4">
+									<div className="d-flex justify-content-between align-items-center fs-3 w-md-25 px-md-4 text-info-emphasis">
 										<BsFacebook />
 										<BsYoutube />
 										<BsTwitter />

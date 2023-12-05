@@ -18,7 +18,7 @@ const Compose = (props: ComposeProps) => {
 		<div className="container mt-5">
 			<div className="row justify-content-center">
 				<div className="col-md-8">
-					<h1 className="text-center mb-4">Compose a Blog</h1>
+					<h2 className="mb-4 text-center">Compost Post</h2>
 					<form onSubmit={handleSubmit}>
 						<div className="mb-3">
 							<label htmlFor="titleInput" className="form-label">
@@ -29,6 +29,7 @@ const Compose = (props: ComposeProps) => {
 								className="form-control"
 								id="titleInput"
 								name="title"
+								placeholder="Critical Success"
 								value={values.title || ''}
 								onChange={handleChanges}
 								required
@@ -43,6 +44,7 @@ const Compose = (props: ComposeProps) => {
 								id="contentTextarea"
 								rows={20}
 								name="content"
+								placeholder="Rolled a nat 20 today..."
 								value={values.content || ''}
 								onChange={handleChanges}
 								required

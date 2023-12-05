@@ -35,7 +35,7 @@ router.get('/', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
 	try {
 		const newBlog = req.body;
-		newBlog.authorid = 3;
+		newBlog.authorid = 1;
 		const result = await db.blogs.insert(newBlog);
 		res.json({ message: 'Blog created', id: result.insertId });
 	} catch (error) {

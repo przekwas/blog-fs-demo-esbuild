@@ -45,7 +45,7 @@ const Edit = (props: EditProps) => {
 		<div className="container mt-5">
 			<div className="row justify-content-center">
 				<div className="col-md-8">
-                    <h1 className="text-center mb-4">Editing Blog</h1>
+                    <h1 className="mb-4 text-center">Editing Blog</h1>
 					<form onSubmit={handleSubmit}>
 						<div className="mb-3">
 							<label htmlFor="titleInput" className="form-label">
@@ -76,7 +76,7 @@ const Edit = (props: EditProps) => {
 							/>
 						</div>
 						<button type="submit" className="btn btn-primary">
-							Submit Post
+							Edit Post
 						</button>
 					</form>
 				</div>
