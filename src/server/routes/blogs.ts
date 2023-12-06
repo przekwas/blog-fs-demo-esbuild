@@ -25,6 +25,17 @@ router.get('/:blogid', async (req, res, next) => {
 
 router.get('/', async (req, res, next) => {
 	try {
+		if (Object.keys(req.query).includes('search')) {
+			const searchTitle = (req.query.search as string).trim();
+			if (searchTitle) {
+				const matchedBlogs = await db.blogs.search(searchTitle);
+				res.json(matchedBlogs);
+			} else {
+				res.json([]);
+			}
+			return;
+		}
+
 		const blogs = await db.blogs.getAll();
 		res.json(blogs);
 	} catch (error) {

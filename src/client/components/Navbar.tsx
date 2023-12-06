@@ -45,6 +45,15 @@ const Navbar = (props: NavbarProps) => {
 												className={({ isActive }) =>
 													`nav-link ${isActive && 'active'}`
 												}
+												to="/search">
+												Search
+											</NavLink>
+										</li>
+										<li className="nav-item">
+											<NavLink
+												className={({ isActive }) =>
+													`nav-link ${isActive && 'active'}`
+												}
 												to="/compose">
 												Compose
 											</NavLink>

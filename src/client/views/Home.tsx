@@ -39,6 +39,7 @@ const Home = (props: HomeProps) => {
 						<hr className="border opacity-75 ms-4 border-secondary border-3 w-25" />
 					</h5>
 					<ul className="list-group list-group-numbered list-group-flush">
+						{/* featured posts are the first 5 id's to pass a fizzbuzz lol */}
 						{featuredBlogs.map(blog => (
 							<li
 								key={blog.id}
@@ -54,6 +55,7 @@ const Home = (props: HomeProps) => {
 
 			<h1 className="mb-4">Latest Posts</h1>
 			<div className="row">
+				{/* latest main post */}
 				{blogs.length > 0 && (
 					<div className="mb-3 col-12">
 						<div
@@ -73,6 +75,7 @@ const Home = (props: HomeProps) => {
 						</div>
 					</div>
 				)}
+				{/* latest posts below main */}
 				{blogs.slice(1, 7).map(blog => (
 					<div className="mb-3 col-md-4" key={blog.id}>
 						<div
@@ -95,7 +98,8 @@ const Home = (props: HomeProps) => {
 			</div>
 			<h2 className="mt-5 mb-4">All Posts</h2>
 			<div className="list-group">
-				{blogs.map((blog, idx) => (
+				{/* all posts no pagination yet */}
+				{blogs.map(blog => (
 					<a
 						key={blog.id}
 						onClick={() => navigate(`/blog/${blog.id}`)}

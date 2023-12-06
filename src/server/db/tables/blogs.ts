@@ -37,6 +37,10 @@ export function getOne(id: number) {
     WHERE blogs.id = ?;`, [id]);
 }
 
+export function search(title: string) {
+    return SelectQuery('SELECT * FROM blogs WHERE title LIKE ?', [`%${title}%`])
+}
+
 export function insert(newBlog: Partial<IBlogRow>) {
 	return ModifyQuery('INSERT INTO blogs SET ?;', newBlog);
 }

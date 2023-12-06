@@ -7,6 +7,7 @@ import Admin, { adminLoader } from './views/Admin';
 import Edit, { editLoader } from './views/Edit';
 import Compose, { composeLoader } from './views/Compose';
 import ErrorBoundary from './views/ErrorBoundary';
+import Search from './views/Search';
 
 interface AppProps {}
 
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
 				path: '/compose',
 				loader: composeLoader,
 				element: <Compose />
+			},
+			{
+				path: '/search',
+				element: <Search />
 			}
 		]
 	}
