@@ -50,10 +50,10 @@ export function insert(newBlogTag: IBlogTagRow) {
 	return ModifyQuery('INSERT INTO blogtags SET ?;', newBlogTag);
 }
 
-export function update(updatedBlogTag: Partial<IBlogTagRow>, id: number) {
-	return ModifyQuery('UPDATE blogtags SET ? WHERE id = ?;', [updatedBlogTag, id]);
+export function update(updatedBlogTag: Partial<IBlogTagRow>, blogid: number) {
+	return ModifyQuery('UPDATE blogtags SET ? WHERE blogid = ?;', [updatedBlogTag, blogid]);
 }
 
-export function destroy(id: number) {
-	return ModifyQuery('DELETE FROM blogtags WHERE id = ?', [id]);
+export function destroy(blogid: number) {
+	return ModifyQuery('DELETE FROM blogtags WHERE blogid = ?', [blogid]);
 }

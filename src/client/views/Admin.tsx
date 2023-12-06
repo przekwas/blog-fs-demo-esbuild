@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useLoaderData, useNavigate } from 'react-router-dom';
+import { useLoaderData, useNavigate, useRevalidator } from 'react-router-dom';
 import { fetchData } from '../services/fetchData';
 import type { IBlog } from '../types';
 import Modal from '../components/Modal';
@@ -17,6 +17,7 @@ interface AdminProps {}
 
 const Admin = (props: AdminProps) => {
 	const navigate = useNavigate();
+	const revalidator = useRevalidator();
 	const blogs = useLoaderData() as IBlog[];
 	const [selectedBlog, setSelectedBlog] = useState<IBlog | null>(null);
 	const [isModalVisible, setIsModalVisible] = useState(false);
@@ -32,10 +33,15 @@ const Admin = (props: AdminProps) => {
 
 	const handleDeleteBlog = () => {
 		if (selectedBlog) {
-			fetchData(`/api/blogs/${selectedBlog.id}`, 'DELETE').then(() => {
-				setIsModalVisible(false);
-				setSelectedBlog(null);
-			});
+			fetchData(`/api/blogtags/${selectedBlog.id}/blog`, 'DELETE')
+				.then(() => {
+					return fetchData(`/api/blogs/${selectedBlog.id}`, 'DELETE');
+				})
+				.then(() => {
+					setIsModalVisible(false);
+					setSelectedBlog(null);
+					revalidator.revalidate();
+				});
 		}
 	};
 

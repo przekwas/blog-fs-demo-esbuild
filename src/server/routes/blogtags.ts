@@ -35,9 +35,42 @@ router.get('/:blogid/tags', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
 	try {
-		const newBlogTag = req.body;
-		await db.blogtags.insert(newBlogTag);
-		res.json({ message: 'Blogtag created' });
+		const { blogid, tagid } = req.body;
+		for (const id of tagid) {
+			await db.blogtags.insert({ blogid, tagid: id });
+		}
+		res.json({ message: 'Blogtag(s) created' });
+	} catch (error) {
+		next(error);
+	}
+});
+
+router.delete('/:blogid/blog', async (req, res, next) => {
+	try {
+		const blogid = parseInt(req.params.blogid, 10);
+
+		if (!blogid) {
+			return res.status(400).json({ message: 'Invalid blogid parameter' });
+		}
+
+		await db.blogtags.destroy(blogid);
+
+		res.json({ message: 'Blogtag(s) destroyed' });
+	} catch (error) {
+		next(error);
+	}
+});
+
+router.put('/', async (req, res, next) => {
+	try {
+		const { blogid, tagid } = req.body;
+
+		await db.blogtags.destroy(blogid);
+
+		for (const id of tagid) {
+			await db.blogtags.insert({ blogid, tagid: id });
+		}
+		res.json({ message: 'Blogtag(s) edited' });
 	} catch (error) {
 		next(error);
 	}

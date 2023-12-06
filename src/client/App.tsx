@@ -5,7 +5,7 @@ import Home, { homeLoader } from './views/Home';
 import Details, { detailsLoader } from './views/Details';
 import Admin, { adminLoader } from './views/Admin';
 import Edit, { editLoader } from './views/Edit';
-import Compose from './views/Compose';
+import Compose, { composeLoader } from './views/Compose';
 import ErrorBoundary from './views/ErrorBoundary';
 
 interface AppProps {}
@@ -37,6 +37,7 @@ const router = createBrowserRouter([
 			},
 			{
 				path: '/compose',
+				loader: composeLoader,
 				element: <Compose />
 			}
 		]
